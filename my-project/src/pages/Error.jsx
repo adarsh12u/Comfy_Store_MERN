@@ -21,7 +21,7 @@ const Error = () => {
            
                 <h4 className=' text-center font-bold text-4xl'>
                      {
-                       error.error.message
+                      error.message
                      }
                 </h4>
             
