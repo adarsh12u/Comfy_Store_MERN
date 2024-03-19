@@ -1,57 +1,54 @@
 import React from 'react'
-import { Landing ,Register ,  About  ,Login , Orders , SingleProduct , Home , Error , Checkout , Cart } from './pages/index'
+import { Landing ,Register   ,Login , Orders , SingleProduct , Home , Error , Checkout , Cart } from './pages/index'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { ErrroElement } from './components'
 
 
 
-
-
+import {loader  as landingloader} from './pages/Landing'
 const BrowserRouter = createBrowserRouter([{
      path:'/',
      element:   <Home/>,
-     errorElement:<Error/>,  
+    errorElement:<Error/>,
      children : [
       {
         index : true,
         element:   <Landing/>,
-        errorElement:<Error/>  
+        errorElement:<ErrroElement/>,
+        loader:landingloader,
       },
-      {
-        path:'about',
-        element:   <About/>,
-        errorElement:<Error/>  
-      },
+      
       {
         path:'orders',
         element:   <Orders/>,
-        errorElement:<Error/>  
+        
       },
       {
         path:'checkout',
         element:   <Checkout/>,
-        errorElement:<Error/>  
+        
       },
       {
         path:'cart',
         element:   <Cart/>,
-        errorElement:<Error/>  
+        
       },
       {
         path:'singleproduct',
         element:   <SingleProduct/>,
-        errorElement:<Error/>  
+        
       }
      ]
 },
 {
   path:'/login',
   element:   <Login/>,
-  errorElement:<Error/>  
+  
 },
 {
   path:'/register',
   element:   <Register/>,
-  errorElement:<Error/>  
+  
 },
 ])
 

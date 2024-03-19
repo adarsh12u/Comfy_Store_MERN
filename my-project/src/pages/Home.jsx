@@ -1,15 +1,14 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import { Header, Navbar } from '../components'
 
 const Home = () => {
   return (
     <>
          
-          <nav>
-              <h1>Comfy-Store</h1>          
-          </nav>
- 
-       <section>
+          <Header/>
+          <Navbar/>
+       <section className=' align-element py-20'>
            <Outlet/>
        </section>
        <footer>
