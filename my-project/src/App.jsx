@@ -6,6 +6,8 @@ import { ErrroElement } from './components'
 
 
 import {loader  as landingloader} from './pages/Landing'
+import {loader  as productloader} from './pages/SingleProduct'
+import Product, {loader  as moreproductloader} from './pages/Product'
 const BrowserRouter = createBrowserRouter([{
      path:'/',
      element:   <Home/>,
@@ -29,6 +31,11 @@ const BrowserRouter = createBrowserRouter([{
         
       },
       {
+        path:'products/:id',
+        element:   <SingleProduct/>,
+        loader:productloader
+      },
+      {
         path:'cart',
         element:   <Cart/>,
         
@@ -37,8 +44,14 @@ const BrowserRouter = createBrowserRouter([{
         path:'singleproduct',
         element:   <SingleProduct/>,
         
+      },
+      {
+        path:'products',
+        element:   <Product/>,
+        loader: moreproductloader
+   
       }
-     ]
+          ]
 },
 {
   path:'/login',
