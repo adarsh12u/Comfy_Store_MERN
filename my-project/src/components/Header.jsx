@@ -1,19 +1,29 @@
 
 import { Link, useNavigate } from 'react-router-dom';
 
-
+import {useDispatch, useSelector} from 'react-redux';
+import { clearCart } from '../Features/Cart/cartSlice';
+import { logoutUser } from '../Features/Cart/User/userslice';
 const Header = () => {
   const navigate = useNavigate();
-const user = false;
+  const dispatch =  useDispatch();
+
+  const user = useSelector((state) => state.userstate.user);
+ const handlelogout = () =>{
+     navigate('/');
+     console.log("adarsh")
+     dispatch(clearCart());
+     dispatch(logoutUser());
+  }
   return (
     <header className='bg-neutral py-2 text-neutral-content'>
       <div className='align-element flex justify-center sm:justify-end'>
         {user ? (
           <div className='flex gap-x-2 sm:gap-x-8 items-center'>
-            <p className='text-xs sm:text-sm'>Hello, {}</p>
+            <p className='text-xs sm:text-sm'>Hello, {user.username}</p>
             <button
               className='btn btn-xs btn-outline btn-primary'
-              
+              onClick={handlelogout}
             >
               logout
             </button>

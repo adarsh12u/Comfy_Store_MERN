@@ -1,28 +1,52 @@
-import React from 'react'
-import { Form } from 'react-router-dom'
-import { Button, Input } from '../components'
+import {  Button, Input } from '../components';
+import { Form, Link, redirect } from 'react-router-dom';
+import { customFetch } from '../utils/index';
+import { toast } from 'react-toastify';
+
+export const action = async ({ request }) => {
+  
+  const formData = await request.formData();
+ 
+  const data = Object.fromEntries(formData);
+
+  try {
+    const response = await customFetch.post('/auth/local/register', data);
+    toast.success('account created successfully');
+    return redirect('/login');
+  } catch (error) {
+    const errorMessage =
+      error?.response?.data?.error?.message ||
+      'please double check your credentials';
+    toast.error(errorMessage);
+    return null;
+  }
+};
 
 const Register = () => {
   return (
-    <main className=' bg-gray-100 h-screen grid  place-items-center'>
-        <Form method='POST' className=' card w-96 p-8 gap-y-3 bg-white shadow-lg rounded-lg flex flex-col'>
-             <h1 className=' text-center text-3xl font-bold'>
-                  Register
-             </h1>
-             <Input name='name'  type='text' label='Name' />
-             <Input name='email'  type='email' label='Email' />
-             <Input name='password'  type='password' label='Password' />
-             
-             <div className=' mt-2 w-full'>
-              
-              <Button text='Sign Up'/>
-             
-              </div>
-              
-        </Form>
-         
-    </main>
-  )
-}
-
-export default Register
+    <section className='h-screen grid place-items-center'>
+      <Form
+        method='POST'
+        className='card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4'
+      >
+        <h4 className='text-center text-3xl font-bold'>Register</h4>
+        <Input type='text'  label='username' name='username' />
+        <Input type='email' label='email'  name='email' />
+        <Input type='password' label='password' name='password'  />
+        <div className='mt-4'>
+          <Button text='register' />
+        </div>
+        <p className='text-center'>
+          Already a member?
+          <Link
+            to='/login'
+            className='ml-2 link link-hover link-primary capitalize'
+          >
+            login
+          </Link>
+        </p>
+      </Form>
+    </section>
+  );
+};
+export default Register;

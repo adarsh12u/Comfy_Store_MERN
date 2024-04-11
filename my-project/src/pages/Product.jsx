@@ -3,7 +3,7 @@ import { Filters, Pagination, ProductContainer } from '../components'
 import { customFetch } from '../utils';
 
 const url = '/products';
-export const loader =
+export const loader =(query)=>
   async ({ request }) => {
     const params = Object.fromEntries([
       ...new URL(request.url).searchParams.entries(),
