@@ -11,6 +11,13 @@ import Product, {loader  as moreproductloader} from './pages/Product'
 import { action } from './pages/Register'
 import {store} from './store';
 import { action as loginaction } from './pages/Login'
+const queryClient = new QueryClient({
+  defaultOptions:{
+   queries:{
+        staleTime:1000*60*5
+   }
+  }
+})
 const BrowserRouter = createBrowserRouter([{
      path:'/',
      element:   <Home/>,
@@ -68,13 +75,7 @@ const BrowserRouter = createBrowserRouter([{
   
 },
 ])
-const queryClient = new QueryClient({
-     defaultOptions:{
-      queries:{
-           staleTime:1000*60*5
-      }
-     }
-})
+
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
