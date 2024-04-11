@@ -5,14 +5,14 @@ const url = '/products?featured=true';
 
 const featureproduct = {
   queryKey:['featureProducts'],
-  queryFn:()=>customFetch(`/products/${params.id}`)
+  queryFn:()=>customFetch(`/products/?featured=true`)
 }
 
 export const loader =(query)=> async () => {
    
    const response = await query.ensureQueryData(featureproduct)
    const products= response.data.data;
-   console.log(products)
+   
    return {products};
     
 };
